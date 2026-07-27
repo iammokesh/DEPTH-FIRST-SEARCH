@@ -67,42 +67,52 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 <li>Iterate steps 4 and 5 until all nodes get visited, and there are no more unvisited nodes.</li>
 
 </ol>
+#PYTHON
+```python
+from collections import defaultdict
+
+def dfs(graph, start, visited, path):
+    path.append(start)
+    visited[start] = True
+
+  for neighbour in graph[start]:
+        if not visited[neighbour]:
+            dfs(graph, neighbour, visited, path)
+
+  return path
+
+# Create graph
+graph = defaultdict(list)
+
+# Input number of vertices and edges
+n, e = map(int, input("Enter number of vertices and edges: ").split())
+
+# Input edges
+for i in range(e):
+    u, v = input("Enter edge (u v): ").split()
+    graph[u].append(v)
+    graph[v].append(u)  # Remove this line for a directed graph
+
+# Input starting vertex
+start = input("Enter the starting vertex: ")
+
+visited = defaultdict(bool)
+path = []
+
+traversedpath = dfs(graph, start, visited, path)
+print("DFS Traversal:", traversedpath)
+```
 
 <hr>
-<h3>Sample Input</h3>
-<hr>
-7 9 <BR>
-A B <BR>
-A C <BR>
-A F <BR>
-C E <BR>
-C F <BR>
-C D <BR>
-D E <BR>
-D G <BR>
-G F <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['A', 'B', 'C', 'F', 'E', 'D', 'G']
+<h3>SampleOutput</h3>
+<img width="661" height="292" alt="Screenshot 2026-07-27 143553" src="https://github.com/user-attachments/assets/428aedbb-f477-4e50-8663-78a36c502495" />
 
-<hr>
+<h3>SampleOutput</h3>
+<img width="647" height="210" alt="Screenshot 2026-07-27 143510" src="https://github.com/user-attachments/assets/401306b2-04b6-4ebd-9664-d7bc2cdfc623" />
 
-<hr>
-<h3>Sample Input</h3>
-<hr>
-5 6 <BR>
-0 1 <BR>
-0 2 <BR>
-1 2 <BR>
-1 3 <BR>
-2 4 <BR>
-3 4 <BR>
-<hr>
-<h3>Sample Output</h3>
-<hr>
-['0', '1', '2', '3', '4']
-<hr>
+
+
+
 <h3>Result:</h3>
 <hr>
 <p>Thus,a Graph was constructed and implementation of Breadth First Search for the same graph was done successfully.</p>
